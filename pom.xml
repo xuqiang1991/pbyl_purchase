@@ -8,7 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>purchase</name>
+	<name>pbyl_purchase</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
@@ -37,8 +37,8 @@
 			<url>http://repo1.maven.org/maven2/</url>
 		</repository>
 		<repository>
-			<id>dadaomaven</id>
-			<name>dadao maven</name>
+			<id>purchase maven</id>
+			<name>purchase maven</name>
 			<url>http://106.14.96.179:8081/nexus/content/groups/public</url>
 			<snapshots>
 				<enabled> false</enabled>
