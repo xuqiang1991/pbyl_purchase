@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+
+    <appender name="RollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>/data/work/run_app/logs/purchase-crm.log</File>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter"> <!-- 日志过滤器，只记录warn级别日志 ,若要配置其他级别，复制appender，修改level，并在root中配置-->
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>/data/work/run_app/logs/purchase-crm.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <maxHistory>3000</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <Pattern>%d{YYYY-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg %n</Pattern>
+        </encoder>
+    </appender>
+
+    <springProfile name="dev">
+        <root level="INFO">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="RollingFileAppender" />
+        </root>
+    </springProfile>
+    
+    <springProfile name="test">
+        <root level="INFO">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="RollingFileAppender" />
+        </root>
+    </springProfile>
+
+    <springProfile name="prod">
+        <root level="INFO">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="RollingFileAppender" />
+        </root>
+    </springProfile>
+
+    <springProfile name="default">
+        <root level="INFO">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="RollingFileAppender" />
+        </root>
+    </springProfile>
+
+    <logger name="com.cn.common" level="debug"/>
+    <logger name="com.cn.platform" level="debug"/>
+
+</configuration>
