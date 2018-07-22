@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.util.StopWatch;
 
 @SpringBootApplication
 public class PurchaseApplication {
@@ -16,6 +17,9 @@ public class PurchaseApplication {
 		app.addListeners(new MyApplicationListener());
 		app.run(args);
 		logger.info("======================== Spring Boot 启动完成 =======================");
+
+
+
 	}
 
 

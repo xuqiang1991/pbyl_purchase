@@ -1,13 +1,4 @@
-/**
- 
 
- *  <P>  Copyright 2014 . </p>
- *  <p>  All rights reserved.</p>
- *  <p> Created on 2015年4月28日</p>
- *  <p> Created by 周鉴斌</p>
- 
- 
- */
 package com.cn.common.invoke.dto;
 
 import java.io.Serializable;

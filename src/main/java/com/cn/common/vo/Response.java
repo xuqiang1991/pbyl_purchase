@@ -1,13 +1,4 @@
-/**
- 
 
- *  <P>  Copyright © 版权所有2016 .</p>
- *  <p>  All rights reserved.</p>
- *  <p> Created on 2015年4月29日</p>
- *  <p> Created by 申午武</p>
- 
- 
- */
 package com.cn.common.vo;
 
 import java.io.Serializable;
@@ -19,7 +10,7 @@ import java.io.Serializable;
  * @Statement: <p>
  *             </p>
  * @JDK version used:
- * @Author: 申姜
+ * @Author: zhoujb
  * @Create Date: 2016-4-2
  * @modify By:
  * @modify Date:

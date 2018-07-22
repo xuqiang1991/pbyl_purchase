@@ -1,13 +1,3 @@
-/**
- 
-
- *  <P> Copyright 2014 . </p>
-
- *  <p> Created on 2017年1月2日</p>
- *  <p> Created by 申姜</p>
- 
- 
- */
 package com.cn.common.vo;
 
 /**
@@ -17,7 +7,7 @@ package com.cn.common.vo;
  * @ClassName: ResponseCode
  * @Description: <p></p>
  * @JDK version used: 
- * @Author: 申姜
+ * @Author: zhoujb
  * @Create Date: 2017年1月2日
  * @modify By:
  * @modify Date:

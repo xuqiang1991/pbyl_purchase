@@ -1,13 +1,4 @@
-/**
- 
 
- *  <P> Copyright 2014 . </p>
-
- *  <p> Created on 2017年11月27日上午11:15:32</p>
- *  <p> Created by zhoujb</p>
- 
- 
- */
 package com.cn.common.utils;
 
 import org.apache.commons.lang3.StringUtils;

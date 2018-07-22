@@ -1,13 +1,4 @@
-/**
- 
 
- *  <P> Copyright 2014 . </p>
-
- *  <p> Created on 2017年11月27日下午4:56:16</p>
- *  <p> Created by zhoujb</p>
- 
- 
- */
 package com.cn.common.utils;
 
 import java.text.SimpleDateFormat;

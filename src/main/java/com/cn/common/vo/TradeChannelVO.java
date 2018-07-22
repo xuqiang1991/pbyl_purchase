@@ -1,13 +1,3 @@
-/**
- 
-
- *  <P> Copyright 2014 . </p>
-
- *  <p> Created on 2017年9月14日</p>
- *  <p> Created by hqy</p>
- 
- 
- */
 package com.cn.common.vo;
 
 import java.io.Serializable;

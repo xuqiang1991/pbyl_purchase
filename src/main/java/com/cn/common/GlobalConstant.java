@@ -1,7 +1,7 @@
 /**
  
 
- *  <P>  Copyright 2017 阳光康众</p>
+ *  <P>  Copyright 2017 </p>
  *  <p>  All rights reserved.</p>
  *  <p> Created on 2016-4-6</p>
  *  <p> Created by 于策</p>

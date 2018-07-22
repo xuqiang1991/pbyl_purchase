@@ -1,13 +1,4 @@
-/**
- 
 
- *  <P> Copyright 2014 . </p>
-
- *  <p> Created on 2017年11月29日上午10:02:39</p>
- *  <p> Created by zhoujb</p>
- 
- 
- */
 package com.cn.platform.rule.service;
 
 import com.cn.framework.mvc.service.BaseService;

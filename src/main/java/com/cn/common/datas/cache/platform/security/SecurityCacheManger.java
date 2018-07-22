@@ -1,13 +1,4 @@
-/**
- 
 
- *  <P> Copyright 2017 阳光康众</p>
-
- *  <p> Created on 2017年7月1日</p>
- *  <p> Created by zhoujb</p>
- 
- 
- */
 package com.cn.common.datas.cache.platform.security;
 
 import com.cn.common.GlobalConstant;

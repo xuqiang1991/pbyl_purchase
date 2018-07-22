@@ -1,13 +1,4 @@
-/**
- 
 
- *  <P> Copyright 2014 . </p>
-
- *  <p> Created on 2017年11月29日</p>
- *  <p> Created by zhoujb</p>
- 
- 
- */
 package com.cn.platform.rule.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
