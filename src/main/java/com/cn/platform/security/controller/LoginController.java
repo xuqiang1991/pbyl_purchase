@@ -10,8 +10,11 @@
  */
 package com.cn.platform.security.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.cn.common.GlobalConstant;
+import com.cn.framework.common.vo.Response;
 import com.cn.framework.config.SystemConfig;
+import com.cn.framework.mvc.controller.RespBody;
 import com.cn.platform.security.entity.Resource;
 import com.cn.platform.security.entity.User;
 import com.cn.platform.security.service.ResourceService;
@@ -66,6 +69,30 @@ public class LoginController {
 	}
 
 	/**
+	 * 首页
+	 *
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/index")
+	public String index(HttpServletRequest request) {
+		logger.info("index....");
+		return "platform/index";
+	}
+
+	/**
+	 * welcome
+	 *
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/welcome")
+	public String welcome(HttpServletRequest request) {
+		logger.info("index....");
+		return "platform/welcome";
+	}
+
+	/**
 	 * 登录验证 返回主页
 	 * 
 	 * @param id
@@ -74,11 +101,11 @@ public class LoginController {
 	 */
 	@RequestMapping(value = "/pf_doLogin")
 	@ResponseBody
-	public String doLogin(Model model, HttpServletRequest request) throws Exception {
+	public RespBody doLogin(Model model, HttpServletRequest request) throws Exception {
+		RespBody respBody = new RespBody();
 		String userAccount = request.getParameter("name");
 		String password = request.getParameter("password");
 		int errorTimes = 0;
-
 		String msg = null;
 		try {
 			UsernamePasswordToken token = new UsernamePasswordToken(userAccount, password);
@@ -113,41 +140,43 @@ public class LoginController {
 				model.addAttribute("menuList", menuList);
 				model.addAttribute("user", user);
 				model.addAttribute("systemVersion", systemVersion);
-				return "/platform/index/index";
+				respBody.setStatus(RespBody.StatusEnum.OK);
+				msg = "登录成功";
 			} else {
-				//loginTimesCache.clearTimes(userAccount);
-				return "redirect:/pf_toLogin";
+				respBody.setStatus(RespBody.StatusEnum.FAIL);
+				msg = "登录超时，请重新登录";
 			}
 		} catch (IncorrectCredentialsException e) {
 			msg = "登录密码错误";
 			//errorTimes = loginTimesCache.loginErrorTimes(userAccount);
-			logger.info("do login msg:{}", msg);
-		} catch (ExcessiveAttemptsException e) {
-			msg = "登录失败次数过多";
-			logger.info("do login msg:{}", msg);
-		} catch (LockedAccountException e) {
-			msg = "帐号已被锁定.";
-			logger.info("do login msg:{}", msg);
-			System.out.println(msg);
-		} catch (DisabledAccountException e) {
-			msg = "帐号已被禁用.";
-			logger.info("do login msg:{}", msg);
-		} catch (ExpiredCredentialsException e) {
-			msg = "帐号已过期.";
-			logger.info("do login msg:{}", msg);
-		} catch (UnknownAccountException e) {
-			msg = "帐号不存在.";
-			logger.info("do login msg:{}", msg);
-		} catch (UnauthorizedException e) {
-			msg = "您没有得到相应的授权！";
-			logger.info("do login msg:{}", msg);
-		} catch (Exception e) {
-			logger.info("do login msg:{}", msg);
-		}
 
-		model.addAttribute("message", msg);
-		model.addAttribute("loginTims", errorTimes);
-		return "redirect:/pf_toLogin";
+		} catch (ExcessiveAttemptsException e) {
+			msg = "登录失败次数过多";e.printStackTrace();
+		} catch (LockedAccountException e) {
+			msg = "帐号已被锁定.";e.printStackTrace();
+		} catch (DisabledAccountException e) {
+			msg = "帐号已被禁用.";e.printStackTrace();
+		} catch (ExpiredCredentialsException e) {
+			msg = "帐号已过期.";e.printStackTrace();
+		} catch (UnknownAccountException e) {
+			msg = "帐号不存在.";e.printStackTrace();
+		} catch (UnauthorizedException e) {
+			msg = "您没有得到相应的授权！";e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		logger.info("do login msg:{}", JSON.toJSONString(respBody));
+		if(respBody.getStatus() != null){
+			if(respBody.getStatus() != RespBody.StatusEnum.OK){
+				respBody.setStatus(RespBody.StatusEnum.FAIL);
+			}
+		}else{
+			respBody.setStatus(RespBody.StatusEnum.FAIL);
+		}
+		respBody.setMessage(msg);
+		/*model.addAttribute("message", msg);
+		model.addAttribute("loginTims", errorTimes);*/
+		return respBody;
 	}
 
 	@RequestMapping("/403")
