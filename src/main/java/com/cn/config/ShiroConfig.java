@@ -1,5 +1,6 @@
 package com.cn.config;
 
+import com.cn.framework.shiro.matcher.CnCredentialsMatcher;
 import com.cn.platform.security.CamboLogoutFilter;
 import com.cn.platform.security.realm.CnRealm;
 import org.apache.shiro.cache.CacheManager;
@@ -19,7 +20,9 @@ public class ShiroConfig {
 
     @Bean(name = "customRealm")
     public CnRealm customRealm() {
-        return new CnRealm();
+        CnRealm cnRealm =  new CnRealm();
+        cnRealm.setCredentialsMatcher(new CnCredentialsMatcher());
+        return cnRealm;
     }
 
     @Bean
