@@ -12,7 +12,6 @@ package com.cn.platform.security.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.cn.common.GlobalConstant;
-import com.cn.framework.common.vo.Response;
 import com.cn.framework.config.SystemConfig;
 import com.cn.framework.mvc.controller.RespBody;
 import com.cn.platform.security.entity.Resource;
@@ -30,7 +29,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -176,6 +174,23 @@ public class LoginController {
 		respBody.setMessage(msg);
 		/*model.addAttribute("message", msg);
 		model.addAttribute("loginTims", errorTimes);*/
+		return respBody;
+	}
+
+	/**
+	 * menus
+	 *
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/menus")
+	@ResponseBody
+	public RespBody menus(User user){
+		RespBody respBody = new RespBody();
+		String userAccount = user.getAccount();
+		List<Resource> menus = resorceService.findResourceListByUser(userAccount);
+		respBody.setResult(menus);
+		respBody.setStatus(RespBody.StatusEnum.OK);
 		return respBody;
 	}
 

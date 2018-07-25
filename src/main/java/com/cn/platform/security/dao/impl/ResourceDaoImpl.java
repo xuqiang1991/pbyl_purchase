@@ -27,7 +27,7 @@ public class ResourceDaoImpl extends BaseDaoImpl<Resource, String> implements Re
 
 	private final static String SQLNAME_FIND_RESOURCE_BY_PARENT = "findResourceByParentId"; // 根据父菜单查找按钮
 
-	private final static String SQLNAME_FIND_RESOURCE_BY_USER = "findResourceListByUser"; // 根据用户获取用户拥有的资源权限
+	private final static String SQLNAME_FIND_RESOURCE_BY_USER = "findResourcesByUserAccount"; // 根据用户获取用户拥有的资源权限
 
 	private final static String SQLNAME_FIND_RESOURCE_BY_NAME = "findResourceByName";
 
