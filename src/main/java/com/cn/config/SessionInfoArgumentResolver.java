@@ -32,7 +32,9 @@ public class SessionInfoArgumentResolver implements HandlerMethodArgumentResolve
             if(c == User.class){
                 Subject subject = SecurityUtils.getSubject();
                 User user = (User)subject.getSession().getAttribute("platformUser");
-                user.setPassword(null);
+                if(user != null){
+                    user.setPassword(null);
+                }
                 return user;
             }
         return null;

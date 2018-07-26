@@ -62,35 +62,17 @@ public class LoginController {
 	 * @param modelMap
 	 * @return
 	 */
-	@RequestMapping(value = "/pf_toLogin")
-	public String toLogin(HttpServletRequest request) {
-		logger.info("pf_doLogin....");
-		return "platform/login/login";
+	@RequestMapping(value = {"/", "index", "/pf_toLogin"})
+	public String index(User user) {
+		if(user != null){
+			logger.info("index....");
+			return "index.html";
+		}else {
+			logger.info("Login....");
+			return "login.html";
+		}
 	}
 
-	/**
-	 * 首页
-	 *
-	 * @param modelMap
-	 * @return
-	 */
-	@RequestMapping(value = "/index")
-	public String index(HttpServletRequest request) {
-		logger.info("index....");
-		return "platform/index";
-	}
-
-	/**
-	 * welcome
-	 *
-	 * @param modelMap
-	 * @return
-	 */
-	@RequestMapping(value = "/welcome")
-	public String welcome(HttpServletRequest request) {
-		logger.info("index....");
-		return "platform/welcome";
-	}
 
 	/**
 	 * 登录验证 返回主页
@@ -199,17 +181,11 @@ public class LoginController {
 			for (Resource resource: menus){
 				jsonMenus.put("text", resource.getName());
 			}
-
-
-
-
 			respBody.setStatus(RespBody.StatusEnum.OK);
 		}else{
 			respBody.setStatus(RespBody.StatusEnum.ERROR);
 			respBody.setMessage("菜单权限不存在");
 		}
-
-
 		return respBody;
 	}
 
