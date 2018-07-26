@@ -50,6 +50,7 @@ public class ShiroConfig {
         filters.put("authc",new ShiroFormAuthenticationFilter());
 
         LinkedHashMap<String, String> filterChainDefinitionMap=new LinkedHashMap<>();
+        filterChainDefinitionMap.put("/**/*.html", "anon");
         filterChainDefinitionMap.put("/pf_doLogin", "anon");
         filterChainDefinitionMap.put("/pf_toLogin", "anon");
         filterChainDefinitionMap.put("/pf_building", "anon");
