@@ -342,4 +342,10 @@ public class ResourceServiceImpl extends BaseServiceImpl<Resource, String> imple
 		return resourceDao.queryResourceByRoleIds(roleIds);
 	}
 
+
+	@Override
+	public List<Resource> getMenus() {
+		// TODO Auto-generated method stub
+		return resourceDao.getMenus();
+	}
 }

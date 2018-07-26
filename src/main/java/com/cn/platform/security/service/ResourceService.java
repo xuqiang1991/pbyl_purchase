@@ -110,4 +110,11 @@ public interface ResourceService extends BaseSQLService<Resource, String> {
 	 */
 	public List<Resource> queryResourceByRoleIds(List<String> roleIds);
 
+
+	/**
+	 * 查询所有菜单资源
+	 * @return
+	 */
+	public List<Resource> getMenus();
+
 }

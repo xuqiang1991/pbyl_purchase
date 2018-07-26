@@ -105,4 +105,9 @@ public interface ResourceDao extends BaseDao<Resource, String> {
 	 */
 	public List<Resource> findAllRootReource();
 
+
+	/**
+	 * 查询所有菜单资源
+	 */
+	public List<Resource> getMenus();
 }

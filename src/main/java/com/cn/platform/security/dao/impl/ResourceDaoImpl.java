@@ -51,6 +51,8 @@ public class ResourceDaoImpl extends BaseDaoImpl<Resource, String> implements Re
 
 	private final static String SQLNAME_FIND_ALL_ROOT_REOURCE = "findAllRootReource";
 
+	private final static String SQLNAME_GETMENUS = "getMenus";
+
 	// 查找一级菜单
 	@Override
 	public List<Resource> findMenuList() {
@@ -256,6 +258,17 @@ public class ResourceDaoImpl extends BaseDaoImpl<Resource, String> implements Re
 		} catch (Exception e) {
 			logger.error(String.format("查找所有根资源信息出错！语句：%s", getSqlName(SQLNAME_FIND_ALL_ROOT_REOURCE)), e);
 			throw new SystemException(String.format("查找所有根资源信息出错！语句：%s", getSqlName(SQLNAME_FIND_ALL_ROOT_REOURCE)), e);
+		}
+	}
+
+	@Override
+	public List<Resource> getMenus() {
+		// TODO Auto-generated method stub
+		try {
+			return sqlSession.selectList(getSqlName(SQLNAME_GETMENUS));
+		} catch (Exception e) {
+			logger.error(String.format("查找所有菜单资源信息出错！语句：%s", getSqlName(SQLNAME_GETMENUS)), e);
+			throw new SystemException(String.format("查找所有菜单资源信息出错！语句：%s", getSqlName(SQLNAME_GETMENUS)), e);
 		}
 	}
 }

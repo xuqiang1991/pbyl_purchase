@@ -12,7 +12,6 @@ package com.cn.platform.security.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.cn.common.GlobalConstant;
-import com.cn.framework.config.SystemConfig;
 import com.cn.framework.mvc.controller.RespBody;
 import com.cn.platform.security.entity.Resource;
 import com.cn.platform.security.entity.User;
@@ -26,6 +25,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -120,7 +120,7 @@ public class LoginController {
 				request.getSession().setAttribute(GlobalConstant.SESSION_LOGIN_TIMES, 0);
 				List<Resource> menuList = resorceService.findMenuList();
 
-				String systemVersion = SystemConfig.getStringValue("system.publish.version");
+				/*String systemVersion = SystemConfig.getStringValue("system.publish.version");
 
 				// 0开发，1测试，2正式
 				if (GlobalConstant.SYSTEM_PUBLISH_VERSION_DEV.equals(systemVersion)) {
@@ -129,18 +129,18 @@ public class LoginController {
 					systemVersion = "测试版";
 				} else if (GlobalConstant.SYSTEM_PUBLISH_VERSION_RC.equals(systemVersion)) {
 					systemVersion = "正式版";
-				}
+				}*/
 
 //				view = new ModelAndView("/platform/index/index");
 				retMap.put("menuList", menuList);
 				retMap.put("user", user);
-				retMap.put("systemVersion", systemVersion);
+				//retMap.put("systemVersion", systemVersion);
 				// 清空登录次数缓存
 				//loginTimesCache.clearTimes(userAccount);
 
 				model.addAttribute("menuList", menuList);
 				model.addAttribute("user", user);
-				model.addAttribute("systemVersion", systemVersion);
+				//model.addAttribute("systemVersion", systemVersion);
 				respBody.setStatus(RespBody.StatusEnum.OK);
 				respBody.setResult(retMap);
 				msg = "登录成功";
@@ -193,8 +193,23 @@ public class LoginController {
 		RespBody respBody = new RespBody();
 		String userAccount = user.getAccount();
 		List<Resource> menus = resorceService.findResourceListByUser(userAccount);
-		respBody.setResult(menus);
-		respBody.setStatus(RespBody.StatusEnum.OK);
+
+		if(!CollectionUtils.isEmpty(menus)){
+			Map<String,Object> jsonMenus = new HashMap<>();
+			for (Resource resource: menus){
+				jsonMenus.put("text", resource.getName());
+			}
+
+
+
+
+			respBody.setStatus(RespBody.StatusEnum.OK);
+		}else{
+			respBody.setStatus(RespBody.StatusEnum.ERROR);
+			respBody.setMessage("菜单权限不存在");
+		}
+
+
 		return respBody;
 	}
 

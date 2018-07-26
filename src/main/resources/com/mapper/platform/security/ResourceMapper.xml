@@ -228,6 +228,7 @@
     where 
       u.ID = ur.USER_ID and  r.ID = ur.ROLE_ID 
 	  and r.ID = rr.ROLE_ID and h.id = rr.RESOURCE_ID
+	  and rr.TYPE = '1'
 	  and u.ACCOUNT = #{userAccount,jdbcType=VARCHAR}	
   </select>
   
@@ -291,4 +292,9 @@
   <select id="findAllRootReource" resultMap="BaseResultMap" >
     SELECT * FROM SYS_RESOURCE WHERE PARENT_ID = ''
   </select>
+
+  <select id="getMenus" resultMap="BaseResultMap" >
+    SELECT * FROM SYS_RESOURCE
+  </select>
+
 </mapper>

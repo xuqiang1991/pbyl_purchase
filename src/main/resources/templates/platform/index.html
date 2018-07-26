@@ -20,7 +20,7 @@
         </div>
 
         <ul class="layui-nav my-header-user-nav" lay-filter="side-top-right">
-            <li class="layui-nav-item"><a href="javascript:;" class="pay" href-url="">支持作者</a></li>
+            <li class="layui-nav-item"><a href="javascript:getMenus();">获取菜单</a></li>
             <li class="layui-nav-item">
                 <a class="name" href="javascript:;"><i class="layui-icon">&#xe629;</i>主题</a>
                 <dl class="layui-nav-child">
@@ -46,32 +46,13 @@
             <!-- 左侧主菜单添加选项卡监听 -->
             <ul class="layui-nav layui-nav-tree" lay-filter="side-main">
                 <li class="layui-nav-item  layui-nav-itemed">
-                    <a href="javascript:;"><i class="layui-icon">&#xe620;</i>基础</a>
+                    <a href="javascript:;"><i class="layui-icon">&#xe620;</i>系统管理</a>
                     <dl class="layui-nav-child">
-                        <!--<dd><a href="javascript:;" href-url="demo/btn1.html"><i class="layui-icon">&#xe621;</i>按钮</a></dd>
-                        <dd><a href="javascript:;" href-url="demo/form.html"><i class="layui-icon">&#xe621;</i>表单</a></dd>
-                        <dd><a href="javascript:;" href-url="demo/table.html"><i class="layui-icon">&#xe621;</i>表格</a></dd>
-                        <dd><a href="javascript:;" href-url="demo/tab-card.html"><i class="layui-icon">&#xe621;</i>选项卡</a></dd>
-                        <dd><a href="javascript:;" href-url="demo/progress-bar.html"><i class="layui-icon">&#xe621;</i>进度条</a></dd>
-                        <dd><a href="javascript:;" href-url="demo/folding-panel.html"><i class="layui-icon">&#xe621;</i>折叠面板</a></dd>
-                        <dd><a href="javascript:;" href-url="demo/auxiliar.html"><i class="layui-icon">&#xe621;</i>辅助元素</a></dd>-->
+                        <dd><a href="javascript:;" href-url="platform/user/list"><i class="layui-icon">&#xe770;</i>帐号管理</a></dd>
+                        <dd><a href="javascript:;" href-url="demo/form.html"><i class="layui-icon">&#xe613;</i>角色管理</a></dd>
+                        <dd><a href="javascript:;" href-url="demo/table.html"><i class="layui-icon">&#xe653;</i>资源管理</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;"><i class="layui-icon">&#xe628;</i>扩展</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="javascript:;" href-url="demo/login.html"><i class="layui-icon">&#xe621;</i>登录页</a></dd>
-                        <dd><a href="javascript:;" href-url="demo/register.html"><i class="layui-icon">&#xe621;</i>注册页</a></dd>
-                        <dd><a href="javascript:;" href-url="demo/login2.html"><i class="layui-icon">&#xe621;</i>登录页2</a></dd>
-                        <dd><a href="javascript:;" href-url="demo/map.html"><i class="layui-icon">&#xe621;</i>图表</a></dd>
-                        <dd><a href="javascript:;" href-url="demo/add-edit.html"><i class="layui-icon">&#xe621;</i>添加-修改</a></dd>
-                        <dd><a href="javascript:;" href-url="demo/data-table.html"><i class="layui-icon">&#xe621;</i>data-table 表格页</a></dd>
-                        <dd><a href="javascript:;" href-url="demo/tree-table.html"><i class="layui-icon">&#xe621;</i>Tree table树表格页</a></dd>
-                        <dd><a href="javascript:;" href-url="demo/404.html"><i class="layui-icon">&#xe621;</i>404页</a></dd>
-                        <dd><a href="javascript:;" href-url="demo/tips.html"><i class="layui-icon">&#xe621;</i>提示页</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item"><a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=ad6ba602ae228be2222ddb804086e0cfa42da3d74e34b383b665c2bec1adfc6e"><i class="layui-icon">&#xe61e;</i>加入群下载源码</a></li>
             </ul>
 
         </div>
@@ -115,8 +96,10 @@
         </tr>
     </table>
 </div>
+<script src="../js/jquery-1.9.1.min.js"></script>
 <script src="../frame/layui/layui.js"></script>
 <script src="../frame/static/js/vip_comm.js"></script>
+
 <script type="text/javascript">
     layui.use(['layer','vip_nav'], function () {
 
@@ -128,13 +111,40 @@
         // 顶部左侧菜单生成 [请求地址,过滤ID,是否展开,携带参数]
         //vipNav.top_left('../frame/static/json/nav_top_left.json','side-top-left',false);
         // 主体菜单生成 [请求地址,过滤ID,是否展开,携带参数]
-        vipNav.main('../frame/static/json/nav_main.json','side-main',true);
-
+        //vipNav.main('../frame/static/json/nav_main.json','side-main',true);
         // you code ...
 
 
     });
-
+    function getMenus(){
+       /* var datas = null;*/
+        var url = "/menus";
+        $.post(url,function(data){
+            console.log(JSON.stringify(data));
+        });
+        /*try {
+            $.ajax( {
+                type : 'POST',
+                url : "/platform/resource/getMenus",
+               /!* data : datas,*!/
+                dataType : 'json',
+                timeout:120000,
+                error : function(data) {
+                    alert("系统内部错误,请联系管理员。");
+                },
+                success : function(data) {
+                    console.log(JSON.stringify(data));
+                    /!*if(data.status == 'OK'){
+                        window.location.href = "../index";
+                    }else{
+                        alert(data.message);
+                    }*!/
+                }
+            });
+        }catch (e) {
+            console.log(e);
+        }*/
+    }
 </script>
 </body>
 </html>

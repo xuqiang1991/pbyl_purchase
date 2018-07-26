@@ -211,4 +211,13 @@ public class ResourceController extends BasePlatformController<Resource, String>
 		List<Resource> menus = resorceService.findMenuList();
 		return new RespBody(StatusEnum.OK, menus);
 	}
+
+    @RequestMapping(value = "/getMenus")
+    @ResponseBody
+	public RespBody getMenus(HttpServletRequest request){
+        List<Resource> menus = resorceService.getMenus();
+        return new RespBody(StatusEnum.OK,menus);
+    }
+
+
 }
