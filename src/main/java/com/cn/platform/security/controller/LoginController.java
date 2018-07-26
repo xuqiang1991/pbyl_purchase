@@ -33,7 +33,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Project ChuFangLiuZhuan_PlatForm
@@ -107,6 +109,7 @@ public class LoginController {
 		String password = request.getParameter("password");
 		int errorTimes = 0;
 		String msg = null;
+		Map<String,Object> retMap = new HashMap<>();
 		try {
 			UsernamePasswordToken token = new UsernamePasswordToken(userAccount, password);
 			token.setRememberMe(true);
@@ -131,9 +134,9 @@ public class LoginController {
 				}
 
 //				view = new ModelAndView("/platform/index/index");
-//				view.addObject("menuList", menuList);
-//				view.addObject("user", user);
-//				view.addObject("systemVersion", systemVersion);
+				retMap.put("menuList", menuList);
+				retMap.put("user", user);
+				retMap.put("systemVersion", systemVersion);
 				// 清空登录次数缓存
 				//loginTimesCache.clearTimes(userAccount);
 
@@ -141,6 +144,7 @@ public class LoginController {
 				model.addAttribute("user", user);
 				model.addAttribute("systemVersion", systemVersion);
 				respBody.setStatus(RespBody.StatusEnum.OK);
+				respBody.setResult(retMap);
 				msg = "登录成功";
 			} else {
 				respBody.setStatus(RespBody.StatusEnum.FAIL);
