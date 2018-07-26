@@ -47,6 +47,7 @@ public class ShiroConfig {
 
         Map<String, Filter> filters = shiroFilterFactoryBean.getFilters();
         filters.put("logout", new CamboLogoutFilter());
+        filters.put("authc",new ShiroFormAuthenticationFilter());
 
         LinkedHashMap<String, String> filterChainDefinitionMap=new LinkedHashMap<>();
         filterChainDefinitionMap.put("/pf_doLogin", "anon");

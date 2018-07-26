@@ -3,6 +3,9 @@ package com.cn.common.utils;
 
 import org.apache.commons.lang3.StringUtils;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @Project: zhoujb
  * @Package: com.cn.common.utils
@@ -34,6 +37,14 @@ public class CommonUtil {
 
 	public static String formatMedicalCard(String medicalCard) {
 		return medicalCard.substring(0, 4) + "*****" + medicalCard.substring(medicalCard.length() - 4, medicalCard.length());
+	}
+
+	public static boolean isAjax(ServletRequest request){
+		String header = ((HttpServletRequest) request).getHeader("X-Requested-With");
+		if("XMLHttpRequest".equalsIgnoreCase(header)){
+			return Boolean.TRUE;
+		}
+		return Boolean.FALSE;
 	}
 
 }
