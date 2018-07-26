@@ -27,47 +27,44 @@
     </span>
 </div>
 
-<div id="dateTable"></div>
-
+<!--<table class="layui-table" lay-data="{height:315, url:'/platform/user/getUserLists', page:true, id:'test'}" lay-filter="test">
+    <thead>
+    <tr>
+        <th lay-data="{field:'account', width:80, sort: true}">帐号</th>
+        <th lay-data="{field:'name', width:80}">用户名</th>
+        <th lay-data="{field:'sex', width:80, sort: true}">性别</th>
+        <th lay-data="{field:'city'}">城市</th>
+        <th lay-data="{field:'sign'}">签名</th>
+        <th lay-data="{field:'experience', sort: true}">积分</th>
+        <th lay-data="{field:'score', sort: true}">评分</th>
+        <th lay-data="{field:'classify'}">职业</th>
+        <th lay-data="{field:'wealth', sort: true}">财富</th>
+    </tr>
+    </thead>
+</table>-->
+<table id="demo" lay-filter="test"></table>
 <script type="text/javascript" src="../frame/layui/layui.js"></script>
 <script type="text/javascript" src="../js/index.js"></script>
 <script type="text/javascript">
-    layui.use(['element', 'form', 'table', 'layer', 'vip_tab'], function () {
-        // 表格渲染
-       /* var tableIns = table.render({
-            elem: '#dateTable'                  //指定原始表格元素选择器（推荐id选择器）
-            , height: vipTable.getFullHeight()    //容器高度
-            , cols: [[                  //标题栏
-                {checkbox: true, sort: true, fixed: true, space: true}
-                , {field: 'id', title: 'ID', width: 80}
-                , {field: 'account', title: '用户名', width: 120}
-                , {field: 'auth_group_name', title: '权限组', width: 120}
-                , {field: 'last_login_time', title: '最后登录时间', width: 180}
-                , {field: 'last_login_ip', title: '最后登录IP', width: 180}
-                , {field: 'create_time', title: '创建时间', width: 180}
-                , {field: 'status', title: '状态', width: 70}
-                , {fixed: 'right', title: '操作', width: 150, align: 'center', toolbar: '#barOption'} //这里的toolbar值是模板元素的选择器
+    layui.use('table', function(){
+        var table = layui.table;
+
+        //第一个实例
+        table.render({
+            elem: '#demo'
+            ,height: 315
+            ,url: '/platform/user/getUserLists' //数据接口
+            ,page: true //开启分页
+            ,cols: [[ //表头
+                {field: 'id', title: 'ID', width:80, sort: true, fixed: 'left'}
+                ,{field: 'account', title: '帐号', width:180}
+                ,{field: 'name', title: '用户名', width:100}
+                ,{field: 'sex', title: '性别', width:80, sort: true}
+                ,{field: 'mobile', title: '手机号码', width:180}
+                ,{field: 'birthDay', title: '出生年月', width:180,sort: true}
+                ,{field: 'idCardNo', title: '身份证号'}
             ]]
-            , id: 'dataCheck'
-            , url: './../json/data_table.json'
-            , method: 'get'
-            , page: true
-            , limits: [30, 60, 90, 150, 300]
-            , limit: 30 //默认采用30
-            , loading: false
-            , done: function (res, curr, count) {
-                //如果是异步请求数据方式，res即为你接口返回的信息。
-                //如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
-                console.log(res);
-
-                //得到当前页码
-                console.log(curr);
-
-                //得到数据总量
-                console.log(count);
-            }
-        });*/
-
+        });
 
     });
 </script>

@@ -1,15 +1,12 @@
 package com.cn.platform.security.controller;
 
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
@@ -237,12 +234,6 @@ public class UserController extends BasePlatformController<User, String> {
 		return new RespBody(StatusEnum.OK, "删除用户成功");
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cn.framework.mvc.controller.BaseController#getService()
-	 */
-
 	/**
 	 * 个人设置页面
 	 * 
@@ -280,5 +271,23 @@ public class UserController extends BasePlatformController<User, String> {
 
 		return modelAndView;
 	}
+
+	@ResponseBody
+	@RequestMapping(value = "/getUserLists", method = RequestMethod.GET)
+	public Object getUserLists(HttpServletRequest request) {
+		String page = request.getParameter("page");
+		String limit = request.getParameter("limit");
+		Map<String, Object> params = new HashMap<>();
+		Page<User> page1 = new Page<User>();
+		page1.setPages(Integer.parseInt(page));
+		page1.setPageSize(Integer.parseInt(limit));
+		PageInfo<User> pageInfo = userService.findListByPage(params,null,page1);
+		Map<String,Object> retMap = new HashMap<>();
+		retMap.put("code",0);
+		retMap.put("msg","成功");
+		retMap.put("data",pageInfo.getList());
+		return retMap;
+	}
+
 
 }
